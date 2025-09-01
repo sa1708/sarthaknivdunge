@@ -1,0 +1,110 @@
+1. Write a SQL statement to insert a record as follows: 
+Employees : 
++-------------+-------------+-------------+----------+--------------------+------------+------------+----------+----------------+------------+---------------+ 
+| EMPLOYEE_ID | FIRST_NAME  | LAST_NAME   | EMAIL    | PHONE_NUMBER       | 
+HIRE_DATE  | JOB_ID     
+| SALARY   | COMMISSION_PCT | MANAGER_ID | 
+DEPARTMENT_ID | 
++-------------+-------------+-------------+----------+--------------------+------------+------------+----------+----------------+------------+---------------+ 
+|         100 | Steven      | King        | SKING    | 515.123.4567       | 
+1987-06-17 | AD_PRES    | 24000.00 |           0.00 |          
+10 | 
+200 |   
+|         101 | Neena       | Kochhar     | NKOCHHAR | 515.123.4568       | 
+1987-06-18 | AD_VP      
+| 17000.00 |           0.00 |        
+10 | 
+200 |            
+|         102 | Lex         | De Haan     | LDEHAAN  | 515.123.4569       | 
+1987-06-19 | AD_VP      | 17000.00 |           0.00 |        200 |            
+10 | 
+|         103 | Alexander   | Hunold      
+| AHUNOLD  | 590.423.4567       | 
+1987-06-20 | IT_PROG    |  9000.00 |           0.00 |        103 |            
+60 | 
+|         104 | Bruce       | Ernst       | BERNST   | 590.423.4568       | 
+1987-06-21 | IT_PROG    |  6000.00 |           0.00 |        103 |            
+60 | 
+|         105 | David       | Austin      | DAUSTIN  | 590.423.4569       | 
+1987-06-22 | IT_PROG    |  4800.00 |           0.00 |        103 |            
+60 | 
+|         106 | Valli       | Pataballa   | VPATABAL | 590.423.4560       | 
+1987-06-23 | IT_PROG    |  4800.00 |           0.00 |        103 |            
+60 | 
+|         107 | Diana       | Lorentz     | DLORENTZ | 590.423.5567       | 
+1987-06-24 | IT_PROG    |  4200.00 |           0.00 |        114 |            
+30 | 
+|         108 | Nancy       | Greenberg   | NGREENBE | 515.124.4569       | 
+1987-06-25 | SA_MAN     
+| 12000.00 |           0.00 |        145 |           
+80 | 
+|         109 | Daniel      | Faviet      | DFAVIET  | 515.124.4169       | 
+1987-06-26 | SA_MAN |  9000.00 |           0.00 |        145 | 
+
+answer:-CREATE TABLE Employees (
+    EMPLOYEE_ID     INT PRIMARY KEY,
+    FIRST_NAME      VARCHAR(20),
+    LAST_NAME       VARCHAR(25) NOT NULL,
+    EMAIL           VARCHAR(50) UNIQUE NOT NULL,
+    PHONE_NUMBER    VARCHAR(20),
+    HIRE_DATE       DATE NOT NULL,
+    JOB_ID          VARCHAR(10) NOT NULL,
+    SALARY          DECIMAL(10,2),
+    COMMISSION_PCT  DECIMAL(4,2),
+    MANAGER_ID      INT,
+    DEPARTMENT_ID   INT
+);
+INSERT INTO Employees VALUES
+(100, 'Steven', 'King', 'SKING', '515.123.4567', '1987-06-17', 'AD_PRES', 24000.00, 0.00, 10, 200),
+(101, 'Neena', 'Kochhar', 'NKOCHHAR', '515.123.4568', '1987-06-18', 'AD_VP', 17000.00, 0.00, 10, 200),
+(102, 'Lex', 'De Haan', 'LDEHAAN', '515.123.4569', '1987-06-19', 'AD_VP', 17000.00, 0.00, 200, 10),
+(103, 'Alexander', 'Hunold', 'AHUNOLD', '590.423.4567', '1987-06-20', 'IT_PROG', 9000.00, 0.00, 103, 60),
+(104, 'Bruce', 'Ernst', 'BERNST', '590.423.4568', '1987-06-21', 'IT_PROG', 6000.00, 0.00, 103, 60),
+(105, 'David', 'Austin', 'DAUSTIN', '590.423.4569', '1987-06-22', 'IT_PROG', 4800.00, 0.00, 103, 60),
+(106, 'Valli', 'Pataballa', 'VPATABAL', '590.423.4560', '1987-06-23', 'IT_PROG', 4800.00, 0.00, 103, 60),
+(107, 'Diana', 'Lorentz', 'DLORENTZ', '590.423.5567', '1987-06-24', 'IT_PROG', 4200.00, 0.00, 114, 30),
+(108, 'Nancy', 'Greenberg', 'NGREENBE', '515.124.4569', '1987-06-25', 'SA_MAN', 12000.00, 0.00, 145, 80),
+(109, 'Daniel', 'Faviet', 'DFAVIET', '515.124.4169', '1987-06-26', 'SA_MAN', 9000.00, 0.00, 145, 80);
+
+2)Write a SQL statement to insert 3 rows by a single insert statement.
+Answer:-mysql> insert into deparment
+    -> values
+    -> (10,'adminsitration',200,1700),
+    -> (20,'marketing',201,1800),
+    -> (30,'purchasing',114,1700);
+
+3. Write a SQL statement to insert one row in jobs table to ensure that no duplicate 
+value will be entered in the job_id column.
+Answer:-CREATE TABLE JOBS (
+    JOB_ID VARCHAR(15) PRIMARY KEY,
+    JOB_TITLE VARCHAR(50) NOT NULL,
+    MIN_SALARY INT,
+    MAX_SALARY INT
+);
+INSERT INTO JOBS (JOB_ID, JOB_TITLE, MIN_SALARY, MAX_SALARY)
+VALUES
+('AD_PRES', 'President', 20000, 40000),
+('AD_VP', 'Administration Vice President', 15000, 30000),
+('AD_ASST', 'Administration Assistant', 3000, 6000),
+('FI_MGR', 'Finance Manager', 8200, 16000),
+('FI_ACCOUNT', 'Accountant', 4200, 9000),
+('AC_MGR', 'Accounting Manager', 8200, 16000),
+('AC_ACCOUNT', 'Public Accountant', 4200, 9000),
+('SA_MAN', 'Sales Manager', 10000, 20000);
+select * from jobs;
+
+4. Write SQL statement to increment salary of each emp by 10%.
+Answer:-mysql> UPDATE Employees
+    -> SET Salary = Salary * 1.10;
+
+5. Write a SQL statement to change the email column of employees table with 'not 
+available' for those employees whose department_id is 80 and gets a 
+commission is less than .20%
+Answer:-mysql> UPDATE employees
+    -> SET email = 'not available'
+    -> WHERE department_id = 80
+    ->   AND commission_pct < 0.20;
+
+6. Write a SQL statement to change the email column of employees table with 'not 
+available' for those employees who belongs to the 'Purchasing' department. 
+Answer:-
